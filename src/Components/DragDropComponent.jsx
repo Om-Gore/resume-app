@@ -1,47 +1,72 @@
 const { useState, useRef } = require("react");
 
-export default function DragDropComponent(){
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    const [error, setError] = useState("");
-    const acceptedFileExtensions = ["pdf"];
-    console.log(selectedFiles, "selectedFiles");
+export default function DragDropComponent() {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [error, setError] = useState("");
+  const acceptedFileExtensions = ["pdf"];
+  const acceptedFileTypesString = acceptedFileExtensions
+    .map((ext) => `${ext}`)
+    .join(",");
 
-    const fileInputRef = useRef();
+  const fileInputRef = useRef();
 
-    const handleCustomButtonClick = ()=>{
-      fileInputRef.current.click();
-    };
+  const handleCustomButtonClick = () => {
+    fileInputRef.current.click();
+  };
 
-    const handleFileChange = (event) =>{
-        const newFilesArray = Array.from(event.target.files);
-        const newSelectedFiles = [...selectedFiles];
-        let hasError = false;
-        const fileTypeRegex = new RegExp(acceptedFileExtensions.join("|","i"));
+  const handleFileChange = (event) => {
+    const newFilesArray = Array.from(event.target.files);
+    processFiles(newFilesArray);
+  };
 
-        newFilesArray.forEach((file)=>{
-            // Add all validations here
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const droppedFiles = Array.from(event.dataTransfer.files);
+    processFiles(droppedFiles);
+  };
 
-            if(newSelectedFiles.some((f)=> f.name === file.name)){
-                hasError = true;
-                setError("File name must be unique");
-            } 
-            else if(!fileTypeRegex.test(file.name.split(".").pop())){
-                hasError = true;
-                setError(`Only ${acceptedFileExtensions.join(", ")} files are allowed`);
-            }
-            else{
-            newSelectedFiles.push(file);
-            }
-        });
+  const processFiles = (newFilesArray) => {
+    const newSelectedFiles = [...selectedFiles];
+    let hasError = false;
+    const fileTypeRegex = new RegExp(acceptedFileExtensions.join("|", "i"));
 
-        if(!hasError){
-            setError("");
-            setSelectedFiles(newSelectedFiles);
-        }
-    };
+    newFilesArray.forEach((file) => {
+      // Add all validations here
 
-    return(
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+      if (newSelectedFiles.some((f) => f.name === file.name)) {
+        hasError = true;
+        setError("File name must be unique");
+      } else if (!fileTypeRegex.test(file.name.split(".").pop())) {
+        hasError = true;
+        setError(`Only ${acceptedFileExtensions.join(", ")} files are allowed`);
+      } else {
+        newSelectedFiles.push(file);
+      }
+    });
+
+    if (!hasError) {
+      setError("");
+      setSelectedFiles(newSelectedFiles);
+    }
+  };
+
+  const handleFileDelete = (index) => {
+    const updatedFiles = [...selectedFiles];
+    updatedFiles.splice(index, 1);
+    setSelectedFiles(updatedFiles);
+  };
+
+  const handleSubmit = () => {
+    if (selectedFiles.length === 0) {
+      setError("File is required");
+    } else {
+      setError("");
+      setSelectedFiles([]);
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-5xl p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-4">
           Upload Files
@@ -50,10 +75,10 @@ export default function DragDropComponent(){
           <div
             className="min-h-[23rem] border-4 border-dashed border-blue-500 bg-blue-100 rounded-3xl p-4 flex flex-col justify-center items-center space-y-4"
             onDragOver={(e) => e.preventDefault()}
-            // onDrop={(e) => handleDrop(e)}
+            onDrop={(e) => handleDrop(e)}
           >
             <img
-              src="./assets/svg/upload.svg"
+              src="src/assets/svg/upload.svg"
               alt="Upload Icon"
               className="w-24 h-24 mb-2"
             />
@@ -71,7 +96,7 @@ export default function DragDropComponent(){
               id="files"
               name="files"
               multiple
-            //   accept={acceptedFileTypesString}
+              accept={acceptedFileTypesString}
               ref={fileInputRef}
               className="hidden"
               onChange={handleFileChange}
@@ -92,7 +117,7 @@ export default function DragDropComponent(){
                   >
                     <div className="flex items-center">
                       <img
-                        src="../assets/svg/image.svg"
+                        src="src/assets/svg/image.svg"
                         alt="File Icon"
                         className="w-8 h-8 mr-2"
                       />
@@ -100,18 +125,18 @@ export default function DragDropComponent(){
                     </div>
                     <button
                       type="button"
-                    //   onClick={() => handleFileDelete(index)}
+                      onClick={() => handleFileDelete(index)}
                       className="text-red-500 hover:text-red-700 focus:outline-none"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="none"
-                        class="w-6 h-6"
+                        className="w-6 h-6"
                       >
                         <path
                           stroke="currentColor"
-                          stroke-width="2"
+                          // stroke-width="2"
                           d="M6 4l8 8M14 4l-8 8"
                         />
                       </svg>
@@ -132,7 +157,7 @@ export default function DragDropComponent(){
         <div className="flex justify-center mt-8">
           <button
             type="button"
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
           >
             Save
