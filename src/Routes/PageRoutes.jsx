@@ -3,7 +3,7 @@ import LoginPage from "../Pages/LoginPage";
 import CandidateSignupPage from "../Pages/CandidatePages/CandidateSignupPage";
 import CompanySignupPage from "../Pages/CompanyPages/CompanySignupPage";
 import PageNotFound from "../Pages/PageNotFound";
-import CandidateDashboardPage from "../Pages/CandidatePages/CandidateDashboardPage";
+import CandidateHomePage from "../Pages/CandidatePages/CandidateHomePage";
 import SignupOptionPage from "../Pages/SignupOptionPage";
 
 export default function PageRoutes() {
@@ -14,7 +14,7 @@ export default function PageRoutes() {
       <Route path="/signup-options" element={<SignupOptionPage />} />
       <Route path="/candidate-signup" element={<CandidateSignupPage />} />
       <Route path="/company-signup" element={<CompanySignupPage />} />
-      <Route path="/cadidate-dashboard" element={<CandidateDashboardPage />} />
+      <Route path="/cadidate-dashboard" element={<CandidateHomePage />} />
       <Route path="/*" element={<PageNotFound />} />
       <Route path="/page-not-found" element={<PageNotFound />} />
     </Routes>
