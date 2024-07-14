@@ -8,6 +8,7 @@ import {
   // Calendar,
   LifeBuoy,
   Settings,
+  Power
 } from "lucide-react";
 import Sidebar, { SidebarItem } from "../Components/Sidebar";
 
@@ -28,7 +29,7 @@ export default ({ children }) => {
             icon={<Home size={20} />}
             text="Home"
             active={activeRoute === "/"}
-            onClick={() => handleSidebarItemClick("/page-not-found")}
+            onClick={() => handleSidebarItemClick("/")}
           />
           <SidebarItem
             icon={<LayoutDashboard size={20} />}
@@ -50,7 +51,14 @@ export default ({ children }) => {
             active={activeRoute === "/help"}
             onClick={() => handleSidebarItemClick("/page-not-found")}
           />
+          <SidebarItem
+            icon={<Power size={20} />}
+            text="Logout"
+            active={activeRoute === "/logout"}
+            onClick={() => handleSidebarItemClick("/login")}
+          />
         </Sidebar>
+        
       </div>
 
       <div className="flex-auto overflow-y-auto py-2 px-4 ">{children}</div>
