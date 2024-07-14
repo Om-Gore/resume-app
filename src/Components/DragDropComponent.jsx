@@ -1,6 +1,6 @@
 const { useState, useRef } = require("react");
 
-export default function DragDropComponent() {
+export default function DragDropComponent({children}) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [error, setError] = useState("");
   const acceptedFileExtensions = ["pdf"];
@@ -164,6 +164,7 @@ export default function DragDropComponent() {
           </button>
         </div>
       </div>
+      <div className="flex-auto overflow-y-auto py-2 px-4 ">{children}</div>
     </div>
   );
 }

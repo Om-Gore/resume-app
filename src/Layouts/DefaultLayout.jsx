@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Home,
-  StickyNote,
-  Layers,
-  Calendar,
+  // StickyNote,
+  // Layers,
+  // Calendar,
   LifeBuoy,
   Settings,
 } from "lucide-react";
@@ -34,24 +34,6 @@ export default ({ children }) => {
             icon={<LayoutDashboard size={20} />}
             text="Dashboard"
             active={activeRoute === "/dashboard"}
-            onClick={() => handleSidebarItemClick("/page-not-found")}
-          />
-          <SidebarItem
-            icon={<StickyNote size={20} />}
-            text="Doctors"
-            active={activeRoute === "/doctors"}
-            onClick={() => handleSidebarItemClick("/page-not-found")}
-          />
-          <SidebarItem
-            icon={<Calendar size={20} />}
-            text="Patients"
-            active={activeRoute === "/patients"}
-            onClick={() => handleSidebarItemClick("/page-not-found")}
-          />
-          <SidebarItem
-            icon={<Layers size={20} />}
-            text="Appointments"
-            active={activeRoute === "/appointments"}
             onClick={() => handleSidebarItemClick("/page-not-found")}
           />
           <hr className="my-3" />

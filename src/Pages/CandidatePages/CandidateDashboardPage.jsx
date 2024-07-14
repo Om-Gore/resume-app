@@ -1,5 +1,11 @@
-import CandidateLayout from "../../Layouts/CandidateLayout";
+import DragDropComponent from "../../Components/DragDropComponent.jsx";
+import DefaultLayout from "../../Layouts/DefaultLayout.jsx";
 
 export default () => {
-  return <CandidateLayout></CandidateLayout>;
+  return (
+    <div>
+      <DefaultLayout/>
+      <DragDropComponent/>
+    </div>
+  )
 };
