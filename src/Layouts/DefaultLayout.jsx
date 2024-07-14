@@ -34,7 +34,7 @@ export default ({ children }) => {
             icon={<LayoutDashboard size={20} />}
             text="Dashboard"
             active={activeRoute === "/dashboard"}
-            onClick={() => handleSidebarItemClick("/page-not-found")}
+            onClick={() => handleSidebarItemClick("/dashboard")}
           />
           
           <hr className="my-3" />
