@@ -5,7 +5,6 @@ import CompanySignupPage from "../Pages/CompanyPages/CompanySignupPage";
 import PageNotFound from "../Pages/PageNotFound";
 import CandidateHomePage from "../Pages/CandidatePages/CandidateHomePage";
 import SignupOptionPage from "../Pages/SignupOptionPage";
-import CandidateHomePage from "../Pages/CandidatePages/CandidateHomePage";
 import JobResultPage from "../Pages/CandidatePages/JobResultPage";
 
 export default function PageRoutes() {
