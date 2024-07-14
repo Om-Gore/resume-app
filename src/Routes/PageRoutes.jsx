@@ -5,6 +5,8 @@ import CompanySignupPage from "../Pages/CompanyPages/CompanySignupPage";
 import PageNotFound from "../Pages/PageNotFound";
 import CandidateHomePage from "../Pages/CandidatePages/CandidateHomePage";
 import SignupOptionPage from "../Pages/SignupOptionPage";
+import CandidateHomePage from "../Pages/CandidatePages/CandidateHomePage";
+import JobResultPage from "../Pages/CandidatePages/JobResultPage";
 
 export default function PageRoutes() {
   return (
@@ -16,6 +18,8 @@ export default function PageRoutes() {
       <Route path="/company-signup" element={<CompanySignupPage />} />
       <Route path="/cadidate-dashboard" element={<CandidateHomePage />} />
       <Route path="/*" element={<PageNotFound />} />
+      <Route path="/job-results" element={<JobResultPage />} />
+
       <Route path="/page-not-found" element={<PageNotFound />} />
     </Routes>
   );

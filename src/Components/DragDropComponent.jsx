@@ -1,7 +1,13 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import upload from "../assets/svg/upload.svg";
 import image from "../assets/svg/image.svg";
 const { useState, useRef } = require("react");
-export default function DragDropComponent({children}) {
+
+
+export default function DragDropComponent({ children }) {
+  const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [error, setError] = useState("");
   const acceptedFileExtensions = ["pdf"];
@@ -16,8 +22,15 @@ export default function DragDropComponent({children}) {
   };
 
   const handleFileChange = (event) => {
+
     const newFilesArray = Array.from(event.target.files);
+    console.log(newFilesArray);
     processFiles(newFilesArray);
+
+
+
+
+
   };
 
   const handleDrop = (event) => {
@@ -57,12 +70,35 @@ export default function DragDropComponent({children}) {
     setSelectedFiles(updatedFiles);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (selectedFiles.length === 0) {
       setError("File is required");
     } else {
-      setError("");
-      setSelectedFiles([]);
+      // setError("");
+      console.log(selectedFiles)
+      const formData = new FormData();
+
+      formData.append("pdf", selectedFiles[0]);
+      console.log(formData)
+      console.log(selectedFiles[0])
+
+
+      axios.post('http://localhost:30000/api/user/get-jobs-matched-in-resume',
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+
+      )
+        .then(response => {
+          navigate("/job-results",{state : response.data})
+          console.log('File uploaded successfully:', response.data);
+          // Handle success
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          // Handle error
+        });
+      // setSelectedFiles([]);
     }
   };
 

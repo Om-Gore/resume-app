@@ -36,6 +36,7 @@ export default ({ children }) => {
             active={activeRoute === "/dashboard"}
             onClick={() => handleSidebarItemClick("/page-not-found")}
           />
+          
           <hr className="my-3" />
           <SidebarItem
             icon={<Settings size={20} />}
