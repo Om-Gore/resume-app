@@ -1,5 +1,6 @@
+import upload from "../assets/svg/upload.svg";
+import image from "../assets/svg/image.svg";
 const { useState, useRef } = require("react");
-
 export default function DragDropComponent({children}) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [error, setError] = useState("");
@@ -78,7 +79,7 @@ export default function DragDropComponent({children}) {
             onDrop={(e) => handleDrop(e)}
           >
             <img
-              src="../assets/svg/upload.svg"
+              src={upload}
               alt="Upload Icon"
               className="w-24 h-24 mb-2"
             />
@@ -117,7 +118,7 @@ export default function DragDropComponent({children}) {
                   >
                     <div className="flex items-center">
                       <img
-                        src="src/assets/svg/image.svg"
+                        src={image}
                         alt="File Icon"
                         className="w-8 h-8 mr-2"
                       />
