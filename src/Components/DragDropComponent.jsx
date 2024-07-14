@@ -66,8 +66,8 @@ export default function DragDropComponent({children}) {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="w-full max-w-5xl p-8 bg-white rounded-lg shadow-lg">
+    <div className="flex justify-center items-center h-screen w-1/2 bg-gray-100">
+      <div className="w-full p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-4">
           Upload Files
         </h2>
@@ -78,7 +78,7 @@ export default function DragDropComponent({children}) {
             onDrop={(e) => handleDrop(e)}
           >
             <img
-              src="src/assets/svg/upload.svg"
+              src="../assets/svg/upload.svg"
               alt="Upload Icon"
               className="w-24 h-24 mb-2"
             />
