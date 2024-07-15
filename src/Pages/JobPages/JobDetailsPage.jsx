@@ -45,6 +45,7 @@ const JobDetailsPage = () => {
           `http://localhost:4000/api/user/job/${id}`
         );
         const data = await response.json();
+        console.log(data)
         setData({ job: data.job });
         setLoading(false);
       } catch {

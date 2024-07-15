@@ -1,9 +1,8 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DefaultLayout from "../../Layouts/DefaultLayout";
 
-
 export default function JobResultPage() {
-    const {state } = useLocation();
+    const { state } = useLocation();
     return (
 
         <div>
@@ -16,7 +15,10 @@ export default function JobResultPage() {
                             state && state.map((item) => {
                                 return <li
                                     className="flex  justify-between my-3 py-3 bg-slate-300 rounded-lg  text-center cursor-pointer hover:bg-slate-400 hover:scale-105">
-                                    <p className="px-3">{item.title}</p>
+                                    <Link to={`/job/${item._id}`}>
+                                        <p className="px-3">{item.title}</p>
+                                    </Link>
+
 
                                 </li>
 
