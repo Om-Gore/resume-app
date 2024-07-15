@@ -103,14 +103,14 @@ export default function DragDropComponent({ children }) {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-1/2 bg-gray-100">
+    <div className="flex justify-center items-center h-screen w-full bg-gray-100">
       <div className="w-full p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold text-center mb-4">
           Upload Files
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div
-            className="min-h-[23rem] border-4 border-dashed border-blue-500 bg-blue-100 rounded-3xl p-4 flex flex-col justify-center items-center space-y-4"
+            className="min-h-[23rem] border-4 border-dashed border-blue-500 bg-blue-100 rounded-3xl p-8 m-8 mx-16 flex flex-col justify-center items-center space-y-4"
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleDrop(e)}
           >
@@ -144,7 +144,7 @@ export default function DragDropComponent({ children }) {
             />
           </div>
 
-          <div className="border-2 border-gray-300 rounded-3xl py-4 max-h-[23rem] overflow-auto">
+          <div className="border-2 border-gray-300 rounded-3xl py-4 p-8 m-8 mx-16 max-h-[23rem] overflow-auto">
             {selectedFiles.length > 0 ? (
               <ul className="px-4">
                 {selectedFiles.map((file, index) => (
@@ -201,7 +201,7 @@ export default function DragDropComponent({ children }) {
           </button>
         </div>
       </div>
-      <div className="flex-auto overflow-y-auto py-2 px-4 ">{children}</div>
+      <div className="flex-auto overflow-y-auto">{children}</div>
     </div>
   );
 }
