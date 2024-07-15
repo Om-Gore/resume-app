@@ -29,7 +29,7 @@ export default ({ children }) => {
             icon={<Home size={20} />}
             text="Home"
             active={activeRoute === "/"}
-            onClick={() => handleSidebarItemClick("/")}
+            onClick={() => handleSidebarItemClick("/cadidate-dashboard")}
           />
           <SidebarItem
             icon={<LayoutDashboard size={20} />}
